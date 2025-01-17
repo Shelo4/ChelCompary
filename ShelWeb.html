@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShelCampary</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+            background-size: 400% 400%;
+            animation: gradient 10s ease infinite;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .line {
+            position: absolute;
+            width: 2px;
+            height: 80px;
+            background-color: rgba(255, 255, 255, 0.7);
+            animation: moveLine 10s infinite linear;
+        }
+
+        @keyframes moveLine {
+            0% {
+                transform: translateX(0) translateY(0);
+            }
+            50% {
+                transform: translateX(100vw) translateY(100vh);
+            }
+            100% {
+                transform: translateX(0) translateY(0);
+            }
+        }
+
+        .search-container {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 600px;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            padding: 10px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 30px;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+
+        .search-input:focus {
+            border-color: #6a11cb;
+        }
+
+        .search-btn {
+            background: transparent;
+            border: none;
+            color: #6a11cb;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+            width: 300px;
+        }
+
+        .container h1 {
+            margin-bottom: 20px;
+            font-size: 2em;
+            color: #333;
+        }
+
+        .btn {
+            display: block;
+            margin: 10px auto;
+            padding: 15px 20px;
+            font-size: 1em;
+            text-align: center;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="line" style="top: 5%; left: 5%;"></div>
+    <div class="line" style="top: 15%; left: 25%;"></div>
+    <div class="line" style="top: 25%; left: 40%;"></div>
+    <div class="line" style="top: 35%; left: 55%;"></div>
+    <div class="line" style="top: 45%; left: 70%;"></div>
+    <div class="line" style="top: 55%; left: 85%;"></div>
+    <div class="line" style="top: 65%; left: 10%;"></div>
+    <div class="line" style="top: 75%; left: 30%;"></div>
+    <div class="line" style="top: 85%; left: 50%;"></div>
+    <div class="line" style="top: 95%; left: 70%;"></div>
+
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Поиск...">
+        <button class="search-btn">&#128269;</button>
+    </div>
+
+    <div class="container">
+        <h1>ShelCompary</h1>
+        <h1>Сайт в Бета версии!</h1>
+        <a href="https://t.me/Pidarok_Production" class="btn" target="_blank">Наш Телеграмм канал</a>
+        <a href="https://discord.gg/zJHqk2pv" class="btn" target="_blank">Наш Дискорд сервер</a>
+        <a href="https://t.me/NeShelo4" class="btn" target="_blank">Автор</a>
+        <a href="https://t.me/ShelGames" class="btn" target="_blank">Наши игры</a>
+    </div>
+</body>
+
+</html>

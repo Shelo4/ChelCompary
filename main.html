@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация и Авторизация</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+            color: #555;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            color: #555;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #4CAF50;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .form-switch {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .form-switch a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .form-switch a:hover {
+            text-decoration: underline;
+        }
+        .error {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .success {
+            color: green;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Регистрация</h2>
+        <form id="registration-form">
+            <label for="reg-username">Имя пользователя:</label>
+            <input type="text" id="reg-username" placeholder="Введите имя" required><br>
+            
+            <label for="reg-password">Пароль:</label>
+            <input type="password" id="reg-password" placeholder="Введите пароль" required><br>
+            
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+
+        <div class="form-switch">
+            <p>Уже есть аккаунт? <a href="#" id="switch-to-login">Войти</a></p>
+        </div>
+
+        <p id="registration-error" class="error"></p>
+        <p id="registration-success" class="success"></p>
+    </div>
+
+    <div class="container" style="display:none;" id="login-container">
+        <h2>Авторизация</h2>
+        <form id="login-form">
+            <label for="login-username">Имя пользователя:</label>
+            <input type="text" id="login-username" placeholder="Введите имя" required><br>
+            
+            <label for="login-password">Пароль:</label>
+            <input type="password" id="login-password" placeholder="Введите пароль" required><br>
+            
+            <button type="submit">Войти</button>
+        </form>
+
+        <div class="form-switch">
+            <p>Нет аккаунта? <a href="#" id="switch-to-register">Зарегистрироваться</a></p>
+        </div>
+
+        <p id="login-error" class="error"></p>
+    </div>
+
+    <script>
+        document.getElementById('switch-to-login').addEventListener('click', function() {
+            document.getElementById('login-container').style.display = 'block';
+            document.querySelector('.container').style.display = 'none';
+        });
+
+        document.getElementById('switch-to-register').addEventListener('click', function() {
+            document.getElementById('login-container').style.display = 'none';
+            document.querySelector('.container').style.display = 'block';
+        });
+
+        document.getElementById('registration-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('reg-username').value;
+            const password = document.getElementById('reg-password').value;
+
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            if (users.some(user => user.username === username)) {
+                document.getElementById('registration-error').textContent = 'Пользователь с таким именем уже существует!';
+                return;
+            }
+
+            users.push({ username, password });
+            localStorage.setItem('users', JSON.stringify(users));
+
+            document.getElementById('registration-success').textContent = 'Вы успешно зарегистрированы!';
+            document.getElementById('registration-error').textContent = '';
+            document.getElementById('reg-username').value = '';
+            document.getElementById('reg-password').value = '';
+        });
+
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            const user = users.find(user => user.username === username && user.password === password);
+
+            if (user) {
+                window.location.href = 'ShelWeb.html';
+            } else {
+                document.getElementById('login-error').textContent = 'Неверное имя пользователя или пароль!';
+            }
+        });
+    </script>
+</body>
+</html>
